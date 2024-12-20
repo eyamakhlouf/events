@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Gestion Evenements</a>
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/evenements">Home</a>
+    </li>
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" role="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        Evenements
+      </a>
+      <div class="dropdown-menu">
+        <a  class="dropdown-item"
+          routerLink="/add-evenement">Ajouter</a>
+        <a class="dropdown-item" routerLink="/evenements">Lister</a>
+        <a class="dropdown-item" routerLink="/rechercheParType">Recherche Par Type</a>
+        <a class="dropdown-item" routerLink="/rechercheParNom">Recherche Par Nom</a>
+        <a *ngIf="authService.isAdmin()" class="dropdown-item"
+          routerLink="/listTypes">Gestion des types</a>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Dropdown for login/logout/Profile -->
+  <ul class="navbar-nav ms-auto m-2">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" role="button"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        {{ authService.loggedUser ? authService.loggedUser : 'Connexion' }}
+      </a>
+      <div class="dropdown-menu">
+        <!-- Show login link if user is not logged in -->
+        <a *ngIf="!authService.islogin()" class="dropdown-item" routerLink="/login">Login</a>
+        
+        <!-- Show logout link if user is logged in -->
+        <a *ngIf="authService.islogin()" class="dropdown-item" (click)="onLogout()" style="cursor: pointer;">Logout</a>
+        
+        <!-- Profile link -->
+        <a class="dropdown-item" routerLink="/profile" *ngIf="authService.islogin()">Profile</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- Angular Router Outlet -->
+<router-outlet></router-outlet>

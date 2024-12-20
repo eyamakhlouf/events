@@ -1,0 +1,151 @@
+<!--<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <h4>Type </h4>
+        <select class="form-control form-control" id="idType" name="idType"
+        [(ngModel)]="idType" (change)="onChange()">
+        <option *ngFor="let ty of types" value="{{ty.idType}}">
+        {{ty.nomType}}
+         </option>
+        </select>
+        </div>
+        
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+        <thead>
+    <tr> <th>Id</th><th>Nom</th> <th>Capacite</th> <th>Date Evenement</th><th>Type</th><th>Image</th> <th *ngIf="authService.isAdmin()">Action</th></tr>
+</thead>
+    <tbody *ngFor="let evenement of evenements">
+    <tr >
+    <td>{{evenement.idEvenement}}</td>
+    <td>{{evenement.nomEvenement}}</td>
+    <td>{{evenement.capacite}}</td>
+    <td>{{evenement.dateEvenement| date:'dd/MM/yyyy'}}</td>
+    <td>{{evenement.type.nomType}}</td>
+    <td><img class="card-img-top img-responsive"
+        src = "{{evenement.imageStr}}"
+        style = "height :50px;width:100px">
+        </td>
+    <td *ngIf="authService.isAdmin()">
+        <a class="btn btn-danger" (click)="supprimerEvenement(evenement)">Supprimer</a>&nbsp;
+        <a class="btn btn-success" [routerLink]="['/updateEvenement',evenement.idEvenement]">Modifier</a>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>-->
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    
+      <head>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+       
+    
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--
+    
+    TemplateMo 570 Chain App Dev
+    
+    https://templatemo.com/tm-570-chain-app-dev
+    
+    -->
+    
+        <!-- Additional CSS Files -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/templatemo-chain-app-dev.css">
+        <link rel="stylesheet" href="assets/css/animated.css">
+        <link rel="stylesheet" href="assets/css/owl.css">
+    
+      </head>
+
+<body>
+
+    <div class="container">
+        <!-- Sélecteur de type -->
+        <div class="row mb-4">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <h4>Type</h4>
+            <select
+              class="form-control"
+              id="idType"
+              name="idType"
+              [(ngModel)]="idType"
+              (change)="onChange()"
+            >
+              <option *ngFor="let ty of types" [value]="ty.idType">
+                {{ ty.nomType }}
+              </option>
+            </select>
+          </div>
+        </div>
+      
+        <!-- Liste des événements -->
+        <div class="row">
+          <div
+            *ngFor="let evenement of evenements"
+            class="col-lg-6 col-md-6 col-sm-12 mb-4"
+          >
+            <div class="service-item d-flex align-items-center p-3 border rounded shadow">
+              <!-- Texte de l'événement -->
+              <div class="text-content">
+                <h4>{{ evenement.nomEvenement }}</h4>
+                <p>
+                  <strong>Capacité :</strong> {{ evenement.capacite }} <br />
+                  <strong>Date :</strong> {{ evenement.dateEvenement | date: 'dd/MM/yyyy' }} <br />
+                  <strong>Type :</strong> {{ evenement.type.nomType }}
+                </p>
+                <!-- Boutons d'action -->
+                <div class="text-button">
+                  <button
+                    *ngIf="authService.isAdmin()"
+                    class="btn btn-danger btn-sm"
+                    (click)="supprimerEvenement(evenement)"
+                  >
+                    Supprimer
+                  </button>
+                  <a
+                    *ngIf="authService.isAdmin()"
+                    class="btn btn-success btn-sm ml-2"
+                    [routerLink]="['/updateEvenement', evenement.idEvenement]"
+                  >
+                    Modifier
+                  </a>
+                </div>
+              </div>
+      
+              <!-- Image de l'événement -->
+              <div class="image-content ml-auto">
+                <img
+                  class="img-fluid rounded"
+                  src="{{ evenement.imageStr }}"
+                  alt="{{ evenement.nomEvenement }}"
+                  style="height: 150px; width: 200px; object-fit: cover;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/js/owl-carousel.js"></script>
+      <script src="assets/js/animation.js"></script>
+      <script src="assets/js/imagesloaded.js"></script>
+      <script src="assets/js/popup.js"></script>
+      <script src="assets/js/custom.js"></script>
+      </body></html>
+      

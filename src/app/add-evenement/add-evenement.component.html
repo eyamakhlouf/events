@@ -1,0 +1,46 @@
+<div class="container">
+    <div>
+    <h2>Ajouter un Evenement :</h2>
+    </div>
+    <form >
+        <div class="col-sm-2 col-md-2 col-lg-2">
+        <label hidden>ID Evenement</label>
+        <input type="text" [(ngModel)]="newEvenement.idEvenement"
+        name="idEvenement" class="form-control" hidden>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4" >
+        <label >Nom Evenement</label>
+        <input type="text" [(ngModel)]="newEvenement.nomEvenement"  name="nomEvenement" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >Capacite</label>
+        <input type="number" [(ngModel)]="newEvenement.capacite"
+        name="capacite" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Date Evenement</label>
+        <input type="date" [(ngModel)]="newEvenement.dateEvenement"
+        name="dateEvenement" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Types</label>
+            <select class="form-control form-control-lg" id="idType" name="idType"  [(ngModel)]="newIdType">
+             <option *ngFor="let ty of types" [value]="ty.idType" >
+           {{ty.nomType}}
+            </option>
+            </select>
+         </div>
+         <div class="col-sm-16 col-md-16 col-lg-16">
+            <label class="mb-2">Image :</label>
+            <input type="file" (change)="onImageUpload($event)"
+            name="logo" class="form-control">
+            </div>
+            <div class="col-sm-16 col-md-16 col-lg-16">
+                <img [src]="imagePath" class="card-img-top img-fluid rounded-start"
+                style="width: 500px; height: 300px" />
+                </div>
+        <div class="mt-2">
+        <button type="submit" (click)="addEvenement()"class="btn btn-success">Ajouter</button>
+        </div>
+        </form>
+        </div>
